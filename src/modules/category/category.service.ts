@@ -54,6 +54,7 @@ export class CategoryService {
 				streams: {
 					include: {
 						user: true,
+						categories: true
 					},
 				},
 			},

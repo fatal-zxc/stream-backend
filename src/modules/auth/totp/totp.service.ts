@@ -1,7 +1,9 @@
 import { EnableTotpInput } from './inputs/enable-totp.input'
 import { User } from '@/prisma/generated'
+import { CryptoService } from '@/src/core/crypto/crypto.service'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { BadRequestException, Injectable } from '@nestjs/common'
+import { hash } from 'argon2'
 import { randomBytes } from 'crypto'
 import { encode } from 'hi-base32'
 import { TOTP } from 'otpauth'
@@ -9,7 +11,7 @@ import * as QRCode from 'qrcode'
 
 @Injectable()
 export class TotpService {
-	constructor(private readonly prismaService: PrismaService) {}
+	constructor(private readonly prismaService: PrismaService, private readonly cryptoService: CryptoService) {}
 
 	async generate(user: User) {
 		const secret = encode(randomBytes(15)).replace(/=/g, '').substring(0, 24)
@@ -51,7 +53,7 @@ export class TotpService {
 			},
 			data: {
 				isTotpEnabled: true,
-				totpSecret: secret,
+				totpSecret: await this.cryptoService.encrypt(secret),
 			},
 		})
 

@@ -38,14 +38,10 @@ export class IngressService {
 				preset: IngressAudioEncodingPreset.OPUS_STEREO_96KBPS,
 			}
 		}
+		try {
+			const ingress = await this.livekitService.ingress.createIngress(ingressType, options)
 
-		const ingress = await this.livekitService.ingress.createIngress(ingressType, options)
-
-		if (!ingress || !ingress.url || !ingress.streamKey) {
-			throw new BadRequestException('Неудалось создать входной поток')
-		}
-
-		await this.prismaService.stream.update({
+			await this.prismaService.stream.update({
 			where: {
 				userId: user.id,
 			},
@@ -55,6 +51,9 @@ export class IngressService {
 				streamKey: ingress.streamKey,
 			},
 		})
+		} catch (e) {
+			throw new BadRequestException('Неудалось создать входной поток')
+		}
 
 		return true
 	}

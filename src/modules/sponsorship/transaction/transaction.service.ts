@@ -42,7 +42,7 @@ export class TransactionService {
 
 		const existingSubscription = await this.prismaService.sponsorshipSubscription.findFirst({
 			where: {
-				userId: user.id,
+				sponsorId: user.id,
 				planId: plan.id,
 				channelId: plan.channelId,
 			},
@@ -75,7 +75,7 @@ export class TransactionService {
 				},
 			],
 			mode: 'subscription',
-			success_url: `${this.configService.getOrThrow<string>('ALLOWED_ORIGIN')}/succes?price=${plan.price}&username=${plan.channel.username}`,
+			success_url: `${this.configService.getOrThrow<string>('ALLOWED_ORIGIN')}/success?price=${plan.price}&username=${plan.channel.username}`,
 			cancel_url: this.configService.getOrThrow<string>('ALLOWED_ORIGIN'),
 			customer: customer.id,
 			metadata: {

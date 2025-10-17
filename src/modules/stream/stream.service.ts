@@ -6,6 +6,7 @@ import { Prisma, User } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import { randomUUID } from 'crypto'
 import * as Upload from 'graphql-upload/Upload.js'
 import { AccessToken } from 'livekit-server-sdk'
 import * as sharp from 'sharp'
@@ -72,6 +73,19 @@ export class StreamService {
 		return Array.from(randomIndexes).map(index => streams[index])
 	}
 
+	async findMyStream(user: User) {
+		const stream = await this.prismaService.stream.findUnique({
+			where: {
+				userId: user.id 
+			},
+			include: {
+				categories: true
+			}
+		})
+
+		return stream
+	}
+
 	async changeInfo(user: User, input: ChangeStreamInfoInput) {
 		const { title, categoryIds } = input
 
@@ -82,7 +96,7 @@ export class StreamService {
 			data: {
 				title,
 				categories: {
-					connect: categoryIds.map(id => ({ id })),
+					set: categoryIds.map(id => ({ id })),
 				},
 			},
 		})
@@ -105,9 +119,9 @@ export class StreamService {
 
 		const buffer = Buffer.concat(chunks)
 
-		const fileName = `/streams/${user.username}.webp`
+		const fileName = `/streams/${user.username}-${randomUUID()}.webp`
 
-		if (file.filename && file.filename.endWith('.gif')) {
+		if (file.filename && file.filename.endsWith('.gif')) {
 			const processedBuffer = await sharp(buffer, { animated: true }).resize(1920, 1080).webp().toBuffer()
 
 			await this.storageService.upload(processedBuffer, fileName, 'image/webp')
@@ -119,7 +133,7 @@ export class StreamService {
 
 		await this.prismaService.stream.update({
 			where: {
-				userId: stream.id,
+				id: stream.id,
 			},
 			data: {
 				thumbnailUrl: fileName,
@@ -215,6 +229,8 @@ export class StreamService {
 						contains: searchTerm,
 						mode: 'insensitive',
 					},
+				},
+				{
 					user: {
 						username: {
 							contains: searchTerm,
@@ -222,6 +238,16 @@ export class StreamService {
 						},
 					},
 				},
+				{
+					categories: {
+						some: {
+							title: {
+								contains: searchTerm,
+								mode: 'insensitive'
+							}
+						}
+					}
+				}
 			],
 		}
 	}

@@ -11,7 +11,7 @@ export class LoginInput {
 	@Field(() => String)
 	@IsString()
 	@IsNotEmpty()
-	@MinLength(8)
+	@Length(8, 30)
 	password: string
 
 	@Field(() => String, { nullable: true })

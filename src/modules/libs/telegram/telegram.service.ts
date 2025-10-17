@@ -74,6 +74,12 @@ export class TelegramService extends Telegraf {
 		const chatId = ctx.chat.id.toString()
 
 		const user = await this.findUserByChatId(chatId)
+
+		if (!user) {
+			await ctx.replyWithHTML(MESSAGES.welcome, BUTTONS.profile)
+			return
+		}
+
 		const followersCount = await this.prismaService.follow.count({
 			where: {
 				followerId: user.id,

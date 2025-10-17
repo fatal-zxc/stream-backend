@@ -10,7 +10,7 @@ export class LivekitService {
 
 	constructor(@Inject(LiveKitOptionsSymbol) private readonly options: TypeLiveKitOptions) {
 		this.roomService = new RoomServiceClient(this.options.apiUrl, this.options.apiKey, this.options.apiSecret)
-		this.ingressClient = new IngressClient(this.options.apiUrl)
+		this.ingressClient = new IngressClient(this.options.apiUrl, this.options.apiKey, this.options.apiSecret)
 		this.webhookReceiver = new WebhookReceiver(this.options.apiKey, this.options.apiSecret)
 	}
 

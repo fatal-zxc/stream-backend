@@ -2,7 +2,7 @@ import { ChangeChatSettingsInput } from './inputs/change-chat-settings.input'
 import { SendChatMessageInput } from './inputs/send-chat-message.input'
 import { User } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common'
 
 @Injectable()
 export class ChatService {
@@ -17,6 +17,7 @@ export class ChatService {
 				createdAt: 'desc',
 			},
 			include: {
+				stream: true,
 				user: true,
 			},
 		})
@@ -57,6 +58,7 @@ export class ChatService {
 			},
 			include: {
 				stream: true,
+				user: true
 			},
 		})
 
@@ -65,6 +67,10 @@ export class ChatService {
 
 	async changeSettings(user: User, input: ChangeChatSettingsInput) {
 		const { isChatEnabled, isChatFollowersOnly, isChatPremiumFollowersOnly } = input
+
+		if (isChatPremiumFollowersOnly && !user.isVerified) {
+			throw new ConflictException('Сделать чат для спонсоров может только верифицированный пользователь')
+		}
 
 		await this.prismaService.stream.update({
 			where: {

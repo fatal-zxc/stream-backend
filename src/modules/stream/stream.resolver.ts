@@ -27,6 +27,12 @@ export class StreamResolver {
 	}
 
 	@Authorization()
+	@Query(() => StreamModel, { name: 'findMyStream' })
+	async findMyStream(@Authorized() user: User) {
+		return this.streamService.findMyStream(user)
+	}
+
+	@Authorization()
 	@Mutation(() => Boolean, { name: 'changeStreamInfo' })
 	async changeInfo(@Authorized() user: User, @Args('data') input: ChangeStreamInfoInput) {
 		return this.streamService.changeInfo(user, input)

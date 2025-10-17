@@ -1,3 +1,4 @@
+import { RedisService } from '@/src/core/redis/redis.service'
 import { MailService } from '../../libs/mail/mail.service'
 import { TelegramService } from '../../libs/telegram/telegram.service'
 import { AuthModel } from '../session/models/auth.model'
@@ -16,6 +17,7 @@ import { Request } from 'express'
 export class DeactivateService {
 	constructor(
 		private readonly prismaService: PrismaService,
+		private readonly redisService: RedisService,
 		private readonly mailService: MailService,
 		private readonly configService: ConfigService,
 		private readonly telegramService: TelegramService
@@ -39,7 +41,7 @@ export class DeactivateService {
 			throw new BadRequestException('Токен истек')
 		}
 
-		const user = await this.prismaService.user.update({
+		await this.prismaService.user.update({
 			where: {
 				id: existingToken.userId,
 			},
@@ -56,21 +58,9 @@ export class DeactivateService {
 			},
 		})
 
+		await this.clearSessions(existingToken.userId)
+
 		return destroySession(req, this.configService)
-	}
-
-	async sendDeactivateToken(req: Request, user: User, userAgent: string) {
-		const deactivateToken = await generateToken(this.prismaService, user, TokenType.DEACTIVATE_ACCOUNT, false)
-
-		const metadata = getSessionMetadata(req, userAgent)
-
-		await this.mailService.sendDeactivateToken(user.email, deactivateToken.token, metadata)
-
-		if (deactivateToken.user.notificationSettings.telegramNotifications && user.telegramId) {
-			await this.telegramService.sendDeactivateToken(user.telegramId, deactivateToken.token, metadata)
-		}
-
-		return true
 	}
 
 	async deactivate(req: Request, input: DeactivateAccountInput, user: User, userAgent: string): Promise<AuthModel> {
@@ -95,5 +85,35 @@ export class DeactivateService {
 		await this.validateDeactivateToken(req, pincode)
 
 		return { user, message: 'Успешно' }
+	}
+
+	private async sendDeactivateToken(req: Request, user: User, userAgent: string) {
+		const deactivateToken = await generateToken(this.prismaService, user, TokenType.DEACTIVATE_ACCOUNT, false)
+
+		const metadata = getSessionMetadata(req, userAgent)
+
+		await this.mailService.sendDeactivateToken(user.email, deactivateToken.token, metadata)
+
+		if (deactivateToken.user.notificationSettings.telegramNotifications && user.telegramId) {
+			await this.telegramService.sendDeactivateToken(user.telegramId, deactivateToken.token, metadata)
+		}
+
+		return true
+	}
+
+	private async clearSessions(userId: string) {
+		const keys = await this.redisService.keys('*')
+
+		for (const key of keys) {
+			const sessionData = await this.redisService.get(key)
+
+			if (sessionData) {
+				const session = JSON.parse(sessionData)
+
+				if (session.userId === userId) {
+					await this.redisService.del(key)
+				}
+			}
+		}
 	}
 }

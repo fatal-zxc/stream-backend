@@ -162,7 +162,7 @@ model NotificationSettings {
   id String @id @default(uuid())
 
   siteNotifications     Boolean @default(true) @map("site_notifications")
-  telegramNotifications Boolean @default(true) @map("telegram_notifications")
+  telegramNotifications Boolean @default(false) @map("telegram_notifications")
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique @map("user_id")
@@ -179,7 +179,7 @@ model Transaction {
   amount   Float
   currency String
 
-  stripeSubscriptionId String?           @map("stripe_subscription_id")
+  stripeSubscriptionId String            @unique @map("stripe_subscription_id")
   status               TransactionStatus @default(PENDING)
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -220,8 +220,8 @@ model SponsorshipSubscription {
   plan   SponsorshipPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
   planId String          @map("plan_id")
 
-  user   User   @relation(name: "subscriptions", fields: [userId], references: [id], onDelete: Cascade)
-  userId String @map("user_id")
+  sponsor   User   @relation(name: "subscriptions", fields: [sponsorId], references: [id], onDelete: Cascade)
+  sponsorId String @map("user_id")
 
   channel   User   @relation(name: "sponsors", fields: [channelId], references: [id], onDelete: Cascade)
   channelId String @map("channel_id")
@@ -269,7 +269,7 @@ enum NotificationType {
 
 enum TransactionStatus {
   PENDING
-  SUCCES
+  SUCCESS
   FAILED
   EXPIRED
 

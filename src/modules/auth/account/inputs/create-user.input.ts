@@ -18,6 +18,6 @@ export class CreateUserInput {
 	@Field()
 	@IsString()
 	@IsNotEmpty()
-	@MinLength(8)
+	@Length(8, 30)
 	password: string
 }

@@ -50,7 +50,7 @@ input ChangeProfileInfoInput {
 
 input ChangeStreamInfoInput {
   categoryIds: [String!]
-  title: String
+  title: String!
 }
 
 type ChatMessageModel {
@@ -151,7 +151,7 @@ type Mutation {
   createSponsorshipPlan(data: CreatePlanInput!): PlanModel!
   createUser(data: CreateUserInput!): Boolean!
   deactivateAccount(data: DeactivateAccountInput!): AuthModel!
-  disabletotp: Boolean!
+  disableTotp: Boolean!
   enableTotp(data: EnableTotpInput!): Boolean!
   followChanel(channelId: String!): Boolean!
   generateStreamToken(data: GenerateStreamTokenInput!): GenerateStreamTokenModel!
@@ -220,25 +220,26 @@ type PlanModel {
 }
 
 type Query {
-  changeProfileInfo: [SocialLinkModel!]!
   findAllCategories: [CategoryModel!]!
   findAllStreams(filters: FiltersInput!): [StreamModel!]!
   findCategoryBySlug(slug: String!): CategoryModel!
   findChannelByUsername(username: String!): UserModel!
-  findChannelFollowersCount(channelId: String!): UserModel!
+  findChannelFollowersCount(channelId: String!): Float!
   findChatMessagesByStream(streamId: String!): [ChatMessageModel!]!
   findCurrentSession: SessionModel!
   findMyFollowers: [FollowModel!]!
   findMyFollowings: [FollowModel!]!
   findMySponsors: [SubscriptionModel!]!
   findMySponsorshipPlans: [PlanModel!]!
+  findMyStream: StreamModel!
   findMyTransactions: [TransactionModel!]!
   findNotificationsByUser: [NotificationModel!]!
   findNotificationsUnreadCount: Float!
   findRandomCategories: [CategoryModel!]!
   findRandomStreams: [StreamModel!]!
   findRecommendedChannels: [UserModel!]!
-  findSessionByUser: [SessionModel!]!
+  findSessionsByUser: [SessionModel!]!
+  findSocialLinks: [SocialLinkModel!]!
   findSponsorsByChannel(channelId: String!): [SubscriptionModel!]!
   generateTotpSecret: TotpModel!
   me: UserModel!
@@ -313,9 +314,11 @@ type SubscriptionModel {
   createdAt: DateTime!
   expiresAt: DateTime!
   id: ID!
+  plan: PlanModel!
   planId: ID!
+  sponsor: UserModel!
+  sponsorId: ID!
   updatedAt: DateTime!
-  userId: ID!
 }
 
 type TotpModel {
@@ -338,7 +341,7 @@ enum TransactionStatus {
   EXPIRED
   FAILED
   PENDING
-  SUCCES
+  SUCCESS
 }
 
 """The `Upload` scalar type represents a file upload."""
@@ -361,7 +364,10 @@ type UserModel {
   notifications: [NotificationModel!]!
   password: String!
   socialLinks: [SocialLinkModel!]!
+  sponsors: [SubscriptionModel!]!
+  sponsorshipPlans: [PlanModel!]!
   stream: StreamModel!
+  subscriptions: [SubscriptionModel!]!
   telegramId: String
   totpSecret: String
   updatedAt: DateTime!

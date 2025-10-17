@@ -16,7 +16,7 @@ export class SubscriptionService {
 			},
 			include: {
 				plan: true,
-				user: true,
+				sponsor: true,
 			},
 		})
 

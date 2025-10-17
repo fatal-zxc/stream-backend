@@ -19,6 +19,8 @@ export class AccountService {
 			where: { id },
 			include: {
 				socialLinks: true,
+				notificationSettings: true,
+				stream: true
 			},
 		})
 
@@ -90,7 +92,11 @@ export class AccountService {
 		const isValidPassword = await verify(user.password, oldPassword)
 
 		if (!isValidPassword) {
-			throw new BadRequestException('Неверный старый пароль')
+			throw new BadRequestException('Неверный текущий пароль')
+		}
+
+		if (newPassword === oldPassword) {
+			throw new BadRequestException('Новый пароль не отличается от текущего')
 		}
 
 		await this.prismaService.user.update({

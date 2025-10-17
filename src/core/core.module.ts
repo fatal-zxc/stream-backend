@@ -26,6 +26,7 @@ import { IS_DEV_ENV } from '../shared/utils/is-dev.util'
 import { getGrapthQLConfig } from './config/graphql.config'
 import { getLiveKitConfig } from './config/livekit.config'
 import { getStripeConfig } from './config/stripe.config'
+import { CryptoModule } from './crypto/crypto.module'
 import { PrismaModule } from './prisma/prisma.module'
 import { RedisModule } from './redis/redis.module'
 import { ApolloDriver } from '@nestjs/apollo'
@@ -54,6 +55,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 		}),
 		PrismaModule,
 		RedisModule,
+		CryptoModule,
 		MailModule,
 		StorageModule,
 		TelegramModule,

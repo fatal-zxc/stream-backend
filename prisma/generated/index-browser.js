@@ -234,7 +234,7 @@ exports.Prisma.SponsorshipSubscriptionScalarFieldEnum = {
   id: 'id',
   expiresAt: 'expiresAt',
   planId: 'planId',
-  userId: 'userId',
+  sponsorId: 'sponsorId',
   channelId: 'channelId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -274,7 +274,7 @@ exports.NotificationType = exports.$Enums.NotificationType = {
 
 exports.TransactionStatus = exports.$Enums.TransactionStatus = {
   PENDING: 'PENDING',
-  SUCCES: 'SUCCES',
+  SUCCESS: 'SUCCESS',
   FAILED: 'FAILED',
   EXPIRED: 'EXPIRED'
 };

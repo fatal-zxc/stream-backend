@@ -101,7 +101,7 @@ export type NotificationType = (typeof NotificationType)[keyof typeof Notificati
 
 export const TransactionStatus: {
   PENDING: 'PENDING',
-  SUCCES: 'SUCCES',
+  SUCCESS: 'SUCCESS',
   FAILED: 'FAILED',
   EXPIRED: 'EXPIRED'
 };
@@ -13736,7 +13736,7 @@ export namespace Prisma {
     id: string | null
     expiresAt: Date | null
     planId: string | null
-    userId: string | null
+    sponsorId: string | null
     channelId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -13746,7 +13746,7 @@ export namespace Prisma {
     id: string | null
     expiresAt: Date | null
     planId: string | null
-    userId: string | null
+    sponsorId: string | null
     channelId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -13756,7 +13756,7 @@ export namespace Prisma {
     id: number
     expiresAt: number
     planId: number
-    userId: number
+    sponsorId: number
     channelId: number
     createdAt: number
     updatedAt: number
@@ -13768,7 +13768,7 @@ export namespace Prisma {
     id?: true
     expiresAt?: true
     planId?: true
-    userId?: true
+    sponsorId?: true
     channelId?: true
     createdAt?: true
     updatedAt?: true
@@ -13778,7 +13778,7 @@ export namespace Prisma {
     id?: true
     expiresAt?: true
     planId?: true
-    userId?: true
+    sponsorId?: true
     channelId?: true
     createdAt?: true
     updatedAt?: true
@@ -13788,7 +13788,7 @@ export namespace Prisma {
     id?: true
     expiresAt?: true
     planId?: true
-    userId?: true
+    sponsorId?: true
     channelId?: true
     createdAt?: true
     updatedAt?: true
@@ -13871,7 +13871,7 @@ export namespace Prisma {
     id: string
     expiresAt: Date
     planId: string
-    userId: string
+    sponsorId: string
     channelId: string
     createdAt: Date
     updatedAt: Date
@@ -13898,12 +13898,12 @@ export namespace Prisma {
     id?: boolean
     expiresAt?: boolean
     planId?: boolean
-    userId?: boolean
+    sponsorId?: boolean
     channelId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     plan?: boolean | SponsorshipPlanDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    sponsor?: boolean | UserDefaultArgs<ExtArgs>
     channel?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sponsorshipSubscription"]>
 
@@ -13911,12 +13911,12 @@ export namespace Prisma {
     id?: boolean
     expiresAt?: boolean
     planId?: boolean
-    userId?: boolean
+    sponsorId?: boolean
     channelId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     plan?: boolean | SponsorshipPlanDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    sponsor?: boolean | UserDefaultArgs<ExtArgs>
     channel?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sponsorshipSubscription"]>
 
@@ -13924,12 +13924,12 @@ export namespace Prisma {
     id?: boolean
     expiresAt?: boolean
     planId?: boolean
-    userId?: boolean
+    sponsorId?: boolean
     channelId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     plan?: boolean | SponsorshipPlanDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    sponsor?: boolean | UserDefaultArgs<ExtArgs>
     channel?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sponsorshipSubscription"]>
 
@@ -13937,26 +13937,26 @@ export namespace Prisma {
     id?: boolean
     expiresAt?: boolean
     planId?: boolean
-    userId?: boolean
+    sponsorId?: boolean
     channelId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SponsorshipSubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "expiresAt" | "planId" | "userId" | "channelId" | "createdAt" | "updatedAt", ExtArgs["result"]["sponsorshipSubscription"]>
+  export type SponsorshipSubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "expiresAt" | "planId" | "sponsorId" | "channelId" | "createdAt" | "updatedAt", ExtArgs["result"]["sponsorshipSubscription"]>
   export type SponsorshipSubscriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     plan?: boolean | SponsorshipPlanDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    sponsor?: boolean | UserDefaultArgs<ExtArgs>
     channel?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type SponsorshipSubscriptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     plan?: boolean | SponsorshipPlanDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    sponsor?: boolean | UserDefaultArgs<ExtArgs>
     channel?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type SponsorshipSubscriptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     plan?: boolean | SponsorshipPlanDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    sponsor?: boolean | UserDefaultArgs<ExtArgs>
     channel?: boolean | UserDefaultArgs<ExtArgs>
   }
 
@@ -13964,14 +13964,14 @@ export namespace Prisma {
     name: "SponsorshipSubscription"
     objects: {
       plan: Prisma.$SponsorshipPlanPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
+      sponsor: Prisma.$UserPayload<ExtArgs>
       channel: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       expiresAt: Date
       planId: string
-      userId: string
+      sponsorId: string
       channelId: string
       createdAt: Date
       updatedAt: Date
@@ -14370,7 +14370,7 @@ export namespace Prisma {
   export interface Prisma__SponsorshipSubscriptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     plan<T extends SponsorshipPlanDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SponsorshipPlanDefaultArgs<ExtArgs>>): Prisma__SponsorshipPlanClient<$Result.GetResult<Prisma.$SponsorshipPlanPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    sponsor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     channel<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -14404,7 +14404,7 @@ export namespace Prisma {
     readonly id: FieldRef<"SponsorshipSubscription", 'String'>
     readonly expiresAt: FieldRef<"SponsorshipSubscription", 'DateTime'>
     readonly planId: FieldRef<"SponsorshipSubscription", 'String'>
-    readonly userId: FieldRef<"SponsorshipSubscription", 'String'>
+    readonly sponsorId: FieldRef<"SponsorshipSubscription", 'String'>
     readonly channelId: FieldRef<"SponsorshipSubscription", 'String'>
     readonly createdAt: FieldRef<"SponsorshipSubscription", 'DateTime'>
     readonly updatedAt: FieldRef<"SponsorshipSubscription", 'DateTime'>
@@ -16086,7 +16086,7 @@ export namespace Prisma {
     id: 'id',
     expiresAt: 'expiresAt',
     planId: 'planId',
-    userId: 'userId',
+    sponsorId: 'sponsorId',
     channelId: 'channelId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -17022,12 +17022,12 @@ export namespace Prisma {
     id?: StringFilter<"SponsorshipSubscription"> | string
     expiresAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
     planId?: StringFilter<"SponsorshipSubscription"> | string
-    userId?: StringFilter<"SponsorshipSubscription"> | string
+    sponsorId?: StringFilter<"SponsorshipSubscription"> | string
     channelId?: StringFilter<"SponsorshipSubscription"> | string
     createdAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
     updatedAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
     plan?: XOR<SponsorshipPlanScalarRelationFilter, SponsorshipPlanWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    sponsor?: XOR<UserScalarRelationFilter, UserWhereInput>
     channel?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -17035,12 +17035,12 @@ export namespace Prisma {
     id?: SortOrder
     expiresAt?: SortOrder
     planId?: SortOrder
-    userId?: SortOrder
+    sponsorId?: SortOrder
     channelId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     plan?: SponsorshipPlanOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
+    sponsor?: UserOrderByWithRelationInput
     channel?: UserOrderByWithRelationInput
   }
 
@@ -17051,12 +17051,12 @@ export namespace Prisma {
     NOT?: SponsorshipSubscriptionWhereInput | SponsorshipSubscriptionWhereInput[]
     expiresAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
     planId?: StringFilter<"SponsorshipSubscription"> | string
-    userId?: StringFilter<"SponsorshipSubscription"> | string
+    sponsorId?: StringFilter<"SponsorshipSubscription"> | string
     channelId?: StringFilter<"SponsorshipSubscription"> | string
     createdAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
     updatedAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
     plan?: XOR<SponsorshipPlanScalarRelationFilter, SponsorshipPlanWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    sponsor?: XOR<UserScalarRelationFilter, UserWhereInput>
     channel?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -17064,7 +17064,7 @@ export namespace Prisma {
     id?: SortOrder
     expiresAt?: SortOrder
     planId?: SortOrder
-    userId?: SortOrder
+    sponsorId?: SortOrder
     channelId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -17080,7 +17080,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"SponsorshipSubscription"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"SponsorshipSubscription"> | Date | string
     planId?: StringWithAggregatesFilter<"SponsorshipSubscription"> | string
-    userId?: StringWithAggregatesFilter<"SponsorshipSubscription"> | string
+    sponsorId?: StringWithAggregatesFilter<"SponsorshipSubscription"> | string
     channelId?: StringWithAggregatesFilter<"SponsorshipSubscription"> | string
     createdAt?: DateTimeWithAggregatesFilter<"SponsorshipSubscription"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"SponsorshipSubscription"> | Date | string
@@ -17177,7 +17177,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -17207,7 +17207,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -17237,7 +17237,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -17267,7 +17267,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -18002,7 +18002,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     plan: SponsorshipPlanCreateNestedOneWithoutSponsorshipSubscriptionInput
-    user: UserCreateNestedOneWithoutSubscriptionsInput
+    sponsor: UserCreateNestedOneWithoutSubscriptionsInput
     channel: UserCreateNestedOneWithoutSponsorsInput
   }
 
@@ -18010,7 +18010,7 @@ export namespace Prisma {
     id?: string
     expiresAt: Date | string
     planId: string
-    userId: string
+    sponsorId: string
     channelId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18022,7 +18022,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     plan?: SponsorshipPlanUpdateOneRequiredWithoutSponsorshipSubscriptionNestedInput
-    user?: UserUpdateOneRequiredWithoutSubscriptionsNestedInput
+    sponsor?: UserUpdateOneRequiredWithoutSubscriptionsNestedInput
     channel?: UserUpdateOneRequiredWithoutSponsorsNestedInput
   }
 
@@ -18030,7 +18030,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     planId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    sponsorId?: StringFieldUpdateOperationsInput | string
     channelId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18040,7 +18040,7 @@ export namespace Prisma {
     id?: string
     expiresAt: Date | string
     planId: string
-    userId: string
+    sponsorId: string
     channelId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18057,7 +18057,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     planId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    sponsorId?: StringFieldUpdateOperationsInput | string
     channelId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18856,7 +18856,7 @@ export namespace Prisma {
     id?: SortOrder
     expiresAt?: SortOrder
     planId?: SortOrder
-    userId?: SortOrder
+    sponsorId?: SortOrder
     channelId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18866,7 +18866,7 @@ export namespace Prisma {
     id?: SortOrder
     expiresAt?: SortOrder
     planId?: SortOrder
-    userId?: SortOrder
+    sponsorId?: SortOrder
     channelId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18876,7 +18876,7 @@ export namespace Prisma {
     id?: SortOrder
     expiresAt?: SortOrder
     planId?: SortOrder
-    userId?: SortOrder
+    sponsorId?: SortOrder
     channelId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18997,10 +18997,10 @@ export namespace Prisma {
     connect?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
   }
 
-  export type SponsorshipSubscriptionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput> | SponsorshipSubscriptionCreateWithoutUserInput[] | SponsorshipSubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutUserInput | SponsorshipSubscriptionCreateOrConnectWithoutUserInput[]
-    createMany?: SponsorshipSubscriptionCreateManyUserInputEnvelope
+  export type SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutSponsorInput, SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput> | SponsorshipSubscriptionCreateWithoutSponsorInput[] | SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput | SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput[]
+    createMany?: SponsorshipSubscriptionCreateManySponsorInputEnvelope
     connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
   }
 
@@ -19079,10 +19079,10 @@ export namespace Prisma {
     connect?: SponsorshipPlanWhereUniqueInput | SponsorshipPlanWhereUniqueInput[]
   }
 
-  export type SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput> | SponsorshipSubscriptionCreateWithoutUserInput[] | SponsorshipSubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutUserInput | SponsorshipSubscriptionCreateOrConnectWithoutUserInput[]
-    createMany?: SponsorshipSubscriptionCreateManyUserInputEnvelope
+  export type SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutSponsorInput, SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput> | SponsorshipSubscriptionCreateWithoutSponsorInput[] | SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput | SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput[]
+    createMany?: SponsorshipSubscriptionCreateManySponsorInputEnvelope
     connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
   }
 
@@ -19245,17 +19245,17 @@ export namespace Prisma {
     deleteMany?: SponsorshipPlanScalarWhereInput | SponsorshipPlanScalarWhereInput[]
   }
 
-  export type SponsorshipSubscriptionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput> | SponsorshipSubscriptionCreateWithoutUserInput[] | SponsorshipSubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutUserInput | SponsorshipSubscriptionCreateOrConnectWithoutUserInput[]
-    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SponsorshipSubscriptionCreateManyUserInputEnvelope
+  export type SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutSponsorInput, SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput> | SponsorshipSubscriptionCreateWithoutSponsorInput[] | SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput | SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput[]
+    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutSponsorInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutSponsorInput[]
+    createMany?: SponsorshipSubscriptionCreateManySponsorInputEnvelope
     set?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
     disconnect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
     delete?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
     connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
-    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput[]
+    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutSponsorInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutSponsorInput[]
+    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutSponsorInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutSponsorInput[]
     deleteMany?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
   }
 
@@ -19405,17 +19405,17 @@ export namespace Prisma {
     deleteMany?: SponsorshipPlanScalarWhereInput | SponsorshipPlanScalarWhereInput[]
   }
 
-  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput> | SponsorshipSubscriptionCreateWithoutUserInput[] | SponsorshipSubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutUserInput | SponsorshipSubscriptionCreateOrConnectWithoutUserInput[]
-    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SponsorshipSubscriptionCreateManyUserInputEnvelope
+  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput = {
+    create?: XOR<SponsorshipSubscriptionCreateWithoutSponsorInput, SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput> | SponsorshipSubscriptionCreateWithoutSponsorInput[] | SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput[]
+    connectOrCreate?: SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput | SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput[]
+    upsert?: SponsorshipSubscriptionUpsertWithWhereUniqueWithoutSponsorInput | SponsorshipSubscriptionUpsertWithWhereUniqueWithoutSponsorInput[]
+    createMany?: SponsorshipSubscriptionCreateManySponsorInputEnvelope
     set?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
     disconnect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
     delete?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
     connect?: SponsorshipSubscriptionWhereUniqueInput | SponsorshipSubscriptionWhereUniqueInput[]
-    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput[]
+    update?: SponsorshipSubscriptionUpdateWithWhereUniqueWithoutSponsorInput | SponsorshipSubscriptionUpdateWithWhereUniqueWithoutSponsorInput[]
+    updateMany?: SponsorshipSubscriptionUpdateManyWithWhereWithoutSponsorInput | SponsorshipSubscriptionUpdateManyWithWhereWithoutSponsorInput[]
     deleteMany?: SponsorshipSubscriptionScalarWhereInput | SponsorshipSubscriptionScalarWhereInput[]
   }
 
@@ -20348,7 +20348,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SponsorshipSubscriptionCreateWithoutUserInput = {
+  export type SponsorshipSubscriptionCreateWithoutSponsorInput = {
     id?: string
     expiresAt: Date | string
     createdAt?: Date | string
@@ -20357,7 +20357,7 @@ export namespace Prisma {
     channel: UserCreateNestedOneWithoutSponsorsInput
   }
 
-  export type SponsorshipSubscriptionUncheckedCreateWithoutUserInput = {
+  export type SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput = {
     id?: string
     expiresAt: Date | string
     planId: string
@@ -20366,13 +20366,13 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type SponsorshipSubscriptionCreateOrConnectWithoutUserInput = {
+  export type SponsorshipSubscriptionCreateOrConnectWithoutSponsorInput = {
     where: SponsorshipSubscriptionWhereUniqueInput
-    create: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput>
+    create: XOR<SponsorshipSubscriptionCreateWithoutSponsorInput, SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput>
   }
 
-  export type SponsorshipSubscriptionCreateManyUserInputEnvelope = {
-    data: SponsorshipSubscriptionCreateManyUserInput | SponsorshipSubscriptionCreateManyUserInput[]
+  export type SponsorshipSubscriptionCreateManySponsorInputEnvelope = {
+    data: SponsorshipSubscriptionCreateManySponsorInput | SponsorshipSubscriptionCreateManySponsorInput[]
     skipDuplicates?: boolean
   }
 
@@ -20382,14 +20382,14 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     plan: SponsorshipPlanCreateNestedOneWithoutSponsorshipSubscriptionInput
-    user: UserCreateNestedOneWithoutSubscriptionsInput
+    sponsor: UserCreateNestedOneWithoutSubscriptionsInput
   }
 
   export type SponsorshipSubscriptionUncheckedCreateWithoutChannelInput = {
     id?: string
     expiresAt: Date | string
     planId: string
-    userId: string
+    sponsorId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20695,20 +20695,20 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"SponsorshipPlan"> | Date | string
   }
 
-  export type SponsorshipSubscriptionUpsertWithWhereUniqueWithoutUserInput = {
+  export type SponsorshipSubscriptionUpsertWithWhereUniqueWithoutSponsorInput = {
     where: SponsorshipSubscriptionWhereUniqueInput
-    update: XOR<SponsorshipSubscriptionUpdateWithoutUserInput, SponsorshipSubscriptionUncheckedUpdateWithoutUserInput>
-    create: XOR<SponsorshipSubscriptionCreateWithoutUserInput, SponsorshipSubscriptionUncheckedCreateWithoutUserInput>
+    update: XOR<SponsorshipSubscriptionUpdateWithoutSponsorInput, SponsorshipSubscriptionUncheckedUpdateWithoutSponsorInput>
+    create: XOR<SponsorshipSubscriptionCreateWithoutSponsorInput, SponsorshipSubscriptionUncheckedCreateWithoutSponsorInput>
   }
 
-  export type SponsorshipSubscriptionUpdateWithWhereUniqueWithoutUserInput = {
+  export type SponsorshipSubscriptionUpdateWithWhereUniqueWithoutSponsorInput = {
     where: SponsorshipSubscriptionWhereUniqueInput
-    data: XOR<SponsorshipSubscriptionUpdateWithoutUserInput, SponsorshipSubscriptionUncheckedUpdateWithoutUserInput>
+    data: XOR<SponsorshipSubscriptionUpdateWithoutSponsorInput, SponsorshipSubscriptionUncheckedUpdateWithoutSponsorInput>
   }
 
-  export type SponsorshipSubscriptionUpdateManyWithWhereWithoutUserInput = {
+  export type SponsorshipSubscriptionUpdateManyWithWhereWithoutSponsorInput = {
     where: SponsorshipSubscriptionScalarWhereInput
-    data: XOR<SponsorshipSubscriptionUpdateManyMutationInput, SponsorshipSubscriptionUncheckedUpdateManyWithoutUserInput>
+    data: XOR<SponsorshipSubscriptionUpdateManyMutationInput, SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorInput>
   }
 
   export type SponsorshipSubscriptionScalarWhereInput = {
@@ -20718,7 +20718,7 @@ export namespace Prisma {
     id?: StringFilter<"SponsorshipSubscription"> | string
     expiresAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
     planId?: StringFilter<"SponsorshipSubscription"> | string
-    userId?: StringFilter<"SponsorshipSubscription"> | string
+    sponsorId?: StringFilter<"SponsorshipSubscription"> | string
     channelId?: StringFilter<"SponsorshipSubscription"> | string
     createdAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
     updatedAt?: DateTimeFilter<"SponsorshipSubscription"> | Date | string
@@ -20765,7 +20765,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -20794,7 +20794,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -20839,7 +20839,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -20868,7 +20868,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -20923,7 +20923,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -20952,7 +20952,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -21038,7 +21038,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -21067,7 +21067,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -21125,7 +21125,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -21154,7 +21154,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -21238,7 +21238,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -21267,7 +21267,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -21415,7 +21415,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -21444,7 +21444,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -21478,7 +21478,7 @@ export namespace Prisma {
     followers?: FollowCreateNestedManyWithoutFollowerInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -21507,7 +21507,7 @@ export namespace Prisma {
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -21552,7 +21552,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -21581,7 +21581,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -21621,7 +21621,7 @@ export namespace Prisma {
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -21650,7 +21650,7 @@ export namespace Prisma {
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -21679,7 +21679,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -21708,7 +21708,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -21753,7 +21753,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -21782,7 +21782,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -21811,7 +21811,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -21840,7 +21840,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -21885,7 +21885,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -21914,7 +21914,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -21943,7 +21943,7 @@ export namespace Prisma {
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -21972,7 +21972,7 @@ export namespace Prisma {
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -22017,7 +22017,7 @@ export namespace Prisma {
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -22046,7 +22046,7 @@ export namespace Prisma {
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -22075,7 +22075,7 @@ export namespace Prisma {
     followers?: FollowCreateNestedManyWithoutFollowerInput
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -22104,7 +22104,7 @@ export namespace Prisma {
     followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -22118,14 +22118,14 @@ export namespace Prisma {
     expiresAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutSubscriptionsInput
+    sponsor: UserCreateNestedOneWithoutSubscriptionsInput
     channel: UserCreateNestedOneWithoutSponsorsInput
   }
 
   export type SponsorshipSubscriptionUncheckedCreateWithoutPlanInput = {
     id?: string
     expiresAt: Date | string
-    userId: string
+    sponsorId: string
     channelId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22177,7 +22177,7 @@ export namespace Prisma {
     followers?: FollowUpdateManyWithoutFollowerNestedInput
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -22206,7 +22206,7 @@ export namespace Prisma {
     followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -22344,7 +22344,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
   }
 
   export type UserUncheckedCreateWithoutSponsorsInput = {
@@ -22373,7 +22373,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
   }
 
   export type UserCreateOrConnectWithoutSponsorsInput = {
@@ -22522,7 +22522,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSponsorsInput = {
@@ -22551,7 +22551,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
   }
 
   export type UserCreateWithoutTokensInput = {
@@ -22579,7 +22579,7 @@ export namespace Prisma {
     followings?: FollowCreateNestedManyWithoutFollowingInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionCreateNestedManyWithoutChannelInput
   }
 
@@ -22608,7 +22608,7 @@ export namespace Prisma {
     followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     sponsorshipPlans?: SponsorshipPlanUncheckedCreateNestedManyWithoutChannelInput
-    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutSponsorInput
     sponsors?: SponsorshipSubscriptionUncheckedCreateNestedManyWithoutChannelInput
   }
 
@@ -22653,7 +22653,7 @@ export namespace Prisma {
     followings?: FollowUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUpdateManyWithoutChannelNestedInput
   }
 
@@ -22682,7 +22682,7 @@ export namespace Prisma {
     followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     sponsorshipPlans?: SponsorshipPlanUncheckedUpdateManyWithoutChannelNestedInput
-    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorNestedInput
     sponsors?: SponsorshipSubscriptionUncheckedUpdateManyWithoutChannelNestedInput
   }
 
@@ -22756,7 +22756,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type SponsorshipSubscriptionCreateManyUserInput = {
+  export type SponsorshipSubscriptionCreateManySponsorInput = {
     id?: string
     expiresAt: Date | string
     planId: string
@@ -22769,7 +22769,7 @@ export namespace Prisma {
     id?: string
     expiresAt: Date | string
     planId: string
-    userId: string
+    sponsorId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22986,7 +22986,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SponsorshipSubscriptionUpdateWithoutUserInput = {
+  export type SponsorshipSubscriptionUpdateWithoutSponsorInput = {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22995,7 +22995,7 @@ export namespace Prisma {
     channel?: UserUpdateOneRequiredWithoutSponsorsNestedInput
   }
 
-  export type SponsorshipSubscriptionUncheckedUpdateWithoutUserInput = {
+  export type SponsorshipSubscriptionUncheckedUpdateWithoutSponsorInput = {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     planId?: StringFieldUpdateOperationsInput | string
@@ -23004,7 +23004,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutUserInput = {
+  export type SponsorshipSubscriptionUncheckedUpdateManyWithoutSponsorInput = {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     planId?: StringFieldUpdateOperationsInput | string
@@ -23019,14 +23019,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     plan?: SponsorshipPlanUpdateOneRequiredWithoutSponsorshipSubscriptionNestedInput
-    user?: UserUpdateOneRequiredWithoutSubscriptionsNestedInput
+    sponsor?: UserUpdateOneRequiredWithoutSubscriptionsNestedInput
   }
 
   export type SponsorshipSubscriptionUncheckedUpdateWithoutChannelInput = {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     planId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    sponsorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23035,7 +23035,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     planId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    sponsorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23155,7 +23155,7 @@ export namespace Prisma {
   export type SponsorshipSubscriptionCreateManyPlanInput = {
     id?: string
     expiresAt: Date | string
-    userId: string
+    sponsorId: string
     channelId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23166,14 +23166,14 @@ export namespace Prisma {
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSubscriptionsNestedInput
+    sponsor?: UserUpdateOneRequiredWithoutSubscriptionsNestedInput
     channel?: UserUpdateOneRequiredWithoutSponsorsNestedInput
   }
 
   export type SponsorshipSubscriptionUncheckedUpdateWithoutPlanInput = {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
+    sponsorId?: StringFieldUpdateOperationsInput | string
     channelId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23182,7 +23182,7 @@ export namespace Prisma {
   export type SponsorshipSubscriptionUncheckedUpdateManyWithoutPlanInput = {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
+    sponsorId?: StringFieldUpdateOperationsInput | string
     channelId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

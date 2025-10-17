@@ -1,3 +1,4 @@
+import { CryptoService } from '@/src/core/crypto/crypto.service'
 import { VerificationService } from '../verification/verification.service'
 import { LoginInput } from './inputs/login.input'
 import { AuthModel } from './models/auth.model'
@@ -24,7 +25,8 @@ export class SessionService {
 		private readonly prismaService: PrismaService,
 		private readonly redisService: RedisService,
 		private readonly configService: ConfigService,
-		private readonly verificationService: VerificationService
+		private readonly verificationService: VerificationService,
+		private readonly cryptoService: CryptoService
 	) {}
 
 	async findByUser(req: Request) {
@@ -73,6 +75,7 @@ export class SessionService {
 		const user = await this.prismaService.user.findFirst({
 			where: {
 				OR: [{ username: { equals: login } }, { email: { equals: login } }],
+				isDeactivated: false
 			},
 		})
 
@@ -102,7 +105,7 @@ export class SessionService {
 				label: `${user.email}`,
 				algorithm: 'SHA1',
 				digits: 6,
-				secret: user.totpSecret,
+				secret: await this.cryptoService.decrypt(user.totpSecret),
 			})
 
 			const delta = totp.validate({ token: pincode })

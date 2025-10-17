@@ -95,12 +95,12 @@ export class WebhookService {
 				data: {
 					expiresAt,
 					planId,
-					userId,
+					sponsorId: userId,
 					channelId,
 				},
 				include: {
 					plan: true,
-					user: true,
+					sponsor: true,
 					channel: {
 						include: {
 							notificationSettings: true,
@@ -116,7 +116,7 @@ export class WebhookService {
 					status: TransactionStatus.PENDING,
 				},
 				data: {
-					status: TransactionStatus.SUCCES,
+					status: TransactionStatus.SUCCESS,
 				},
 			})
 
@@ -124,7 +124,7 @@ export class WebhookService {
 				await this.notificationService.createNewSponsorship(
 					channelId,
 					sponsorshipSubscription.plan,
-					sponsorshipSubscription.user
+					sponsorshipSubscription.sponsor
 				)
 			}
 
@@ -135,7 +135,7 @@ export class WebhookService {
 				await this.telegramService.sendNewSponsorship(
 					sponsorshipSubscription.channel.telegramId,
 					sponsorshipSubscription.plan,
-					sponsorshipSubscription.user
+					sponsorshipSubscription.sponsor
 				)
 			}
 		}

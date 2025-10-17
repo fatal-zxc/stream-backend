@@ -41,6 +41,9 @@ export class ChannelService {
 						categories: true,
 					},
 				},
+				sponsorshipPlans: true,
+				subscriptions: true,
+				sponsors: true,
 				followings: true,
 			},
 		})
@@ -92,7 +95,7 @@ export class ChannelService {
 			},
 			include: {
 				plan: true,
-				user: true,
+				sponsor: true,
 			},
 		})
 

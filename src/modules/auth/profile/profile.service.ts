@@ -4,6 +4,7 @@ import { SocialLinkInput, SocialLinkOrderInput } from './inputs/social-link.inpu
 import { User } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { BadRequestException, Injectable } from '@nestjs/common'
+import { randomUUID } from 'crypto'
 import * as Upload from 'graphql-upload/Upload.js'
 import * as sharp from 'sharp'
 
@@ -27,9 +28,9 @@ export class ProfileService {
 
 		const buffer = Buffer.concat(chunks)
 
-		const fileName = `/channels/${user.username}.webp`
+		const fileName = `/channels/${user.username}-${randomUUID()}.webp`
 
-		if (file.filename && file.filename.endWith('.gif')) {
+		if (file.filename && file.filename.endsWith('.gif')) {
 			const processedBuffer = await sharp(buffer, { animated: true }).resize(512, 512).webp().toBuffer()
 
 			await this.storageService.upload(processedBuffer, fileName, 'image/webp')

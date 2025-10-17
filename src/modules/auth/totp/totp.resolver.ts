@@ -23,7 +23,7 @@ export class TotpResolver {
 	}
 
 	@Authorization()
-	@Mutation(() => Boolean, { name: 'disabletotp' })
+	@Mutation(() => Boolean, { name: 'disableTotp' })
 	async disable(@Authorized() user: User) {
 		return this.totpService.disable(user)
 	}

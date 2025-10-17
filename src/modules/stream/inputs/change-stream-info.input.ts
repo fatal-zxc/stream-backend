@@ -1,14 +1,14 @@
 import { Field, InputType } from '@nestjs/graphql'
-import { IsNumber, IsOptional, IsString, MaxLength } from 'class-validator'
+import { IsArray, IsString, Length } from 'class-validator'
 
 @InputType()
 export class ChangeStreamInfoInput {
-	@Field(() => String, { nullable: true })
+	@Field(() => String, { nullable: false })
 	@IsString()
-	@MaxLength(500)
+	@Length(3, 80)
 	title: string
 
 	@Field(() => [String], { nullable: true })
-	@IsString()
+	@IsArray()
 	categoryIds: string[]
 }

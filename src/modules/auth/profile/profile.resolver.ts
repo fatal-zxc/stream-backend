@@ -36,7 +36,7 @@ export class ProfileResolver {
 	}
 
 	@Authorization()
-	@Query(() => [SocialLinkModel], { name: 'changeProfileInfo' })
+	@Query(() => [SocialLinkModel], { name: 'findSocialLinks' })
 	async findSocialLinks(@Authorized() user: User): Promise<SocialLinkModel[]> {
 		return this.profileService.findSocialLinks(user)
 	}
